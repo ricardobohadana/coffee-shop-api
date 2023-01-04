@@ -11,7 +11,11 @@ export class OrderPrismaRepository implements OrderRepository {
   constructor(private readonly prismaService: PrismaService) {}
 
   async getOrders(): Promise<Order[]> {
-    return await this.prismaService.order.findMany();
+    return await this.prismaService.order.findMany({
+      include: {
+        orderProduct: true,
+      },
+    });
   }
   async createOrder(data: Order): Promise<Order> {
     return await this.prismaService.order.create({ data });

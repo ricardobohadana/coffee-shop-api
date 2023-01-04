@@ -29,6 +29,6 @@ export class OrderService {
   }
 
   async getOrders() {
-    return await this.orderRepository.getOrders();
+    const orders = await this.orderRepository.getOrders();
   }
 }
