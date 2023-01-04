@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { v4 as randomUUID } from 'uuid';
 import { CreateCoffeeDto } from 'src/dtos/coffee.dto';
-import { Coffee } from 'src/models/Coffee';
+import { CoffeeModel } from 'src/models/CoffeeModel';
 import { CoffeeRepository } from 'src/repository/interfaces/CoffeeRepository';
 
 @Injectable()
@@ -10,7 +10,7 @@ export class CoffeeService {
 
   async createBatchCoffees(coffeesDto: CreateCoffeeDto[]) {
     const coffees = coffeesDto.map((c) => {
-      const coffee = new Coffee();
+      const coffee = new CoffeeModel();
       coffee.price = c.price;
       coffee.src = c.img;
       coffee.subtitle = c.subtitle;

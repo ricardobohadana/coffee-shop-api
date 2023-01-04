@@ -10,12 +10,36 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Coffee {
-  id String @id @default(uuid())
-  title String
-  subtitle String
-  tags String[]
-  price Decimal
-  src String
+  id           String         @id @default(uuid())
+  title        String
+  subtitle     String
+  tags         String[]
+  price        Decimal
+  src          String
+  orderProduct OrderProduct[]
+}
+
+model OrderProduct {
+  id       String @id @default(uuid())
+  orderId  String
+  coffeeId String
+  amount   Int
+
+  order  Order  @relation(fields: [orderId], references: [id])
+  coffee Coffee @relation(fields: [coffeeId], references: [id])
+}
+
+model Order {
+  id            String         @id @default(uuid())
+  zipCode       String
+  street        String
+  number        String
+  moreInfo      String?
+  district      String
+  city          String
+  state         String
+  paymentMethod String
+  deliveryFee   Decimal
+  orderProduct  OrderProduct[]
 }

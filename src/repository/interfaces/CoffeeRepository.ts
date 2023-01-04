@@ -1,6 +1,6 @@
-import { Coffee } from 'src/models/Coffee';
+import { CoffeeModel } from 'src/models/CoffeeModel';
 
 export abstract class CoffeeRepository {
-  abstract getCoffees(): Promise<Coffee[]>;
-  abstract createBatchCoffee(coffees: Coffee[]): Promise<void>;
+  abstract getCoffees(): Promise<CoffeeModel[]>;
+  abstract createBatchCoffee(coffees: CoffeeModel[]): Promise<void>;
 }
